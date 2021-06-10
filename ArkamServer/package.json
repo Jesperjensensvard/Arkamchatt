@@ -1,0 +1,17 @@
+{
+  "name": "arkamserver",
+  "version": "1.0.0",
+  "description": "node server",
+  "main": "server.js",
+  "scripts": {
+    "test": "server.js"
+  },
+  "author": "jesper",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jshint": "^2.13.0",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.1.2"
+  }
+}
