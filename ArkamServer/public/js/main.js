@@ -1,15 +1,27 @@
 /* server comunication */
 var socket = io();
 var messages = document.getElementById('messages');
-var form = document.getElementById('form');
-var input = document.getElementById('input');
-
-form.addEventListener('submit', function(e) {
+//RequestFuction
+function makeRequest(url, method, formdata, callback) {
+  fetch(url, {
+      method: method,
+      body: formdata
+  }).then((data) => {
+      return data.json()
+  }).then((result) => {
+      callback(result)
+  }).catch((err)=>{
+      console.log(err)
+  })
+}
+var registerForm = document.getElementById('login-form');
+registerForm.addEventListener('submit', function(e) {
   e.preventDefault();
-  if (input.value) {
-    socket.emit('chat message', input.value);
-    input.value = '';
-  }
+  var userinformation = new FormData();
+  userinformation.append("action", "registerUser");
+  userinformation.append("UN", username);
+  userinformation.append("PW", password);
+  makeRequest("/registeruser", "POST", userinformation, (response) => { console.log(response) });
 });
 
 socket.on('chat message', function(msg) {

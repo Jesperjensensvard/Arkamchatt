@@ -1,15 +1,18 @@
 
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const http = require('http');
+const mysql = require('mysql')
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-// Costum classes 
-//require('./classes/db-class');
-//DB = new database();
-
-
+const connection  = mysql.createConnection({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: '',
+  database: process.env.DATABASE_NAME
+});
 /* app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');
 }); */
